@@ -1,0 +1,4 @@
+# frontend/.husky/pre-push
+
+cd frontend
+npm run build
