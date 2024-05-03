@@ -1,0 +1,47 @@
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '@/components/ui/resizable';
+import Navbar from './navbar';
+
+export function Playground() {
+  return (
+    <ResizablePanelGroup direction='vertical' className='min-h-screen'>
+      <ResizablePanel defaultSize={8}>
+        <Navbar />
+      </ResizablePanel>
+      <ResizablePanel defaultSize={92}>
+        <ResizablePanelGroup direction='horizontal' className='border'>
+          <ResizablePanel defaultSize={20} minSize={10} maxSize={30}>
+            <div className='flex h-[200px] items-center justify-center p-6'>
+              <span className='font-semibold'>File Explorer</span>
+            </div>
+          </ResizablePanel>
+          <ResizableHandle />
+          <ResizablePanel defaultSize={50}>
+            <ResizablePanelGroup direction='vertical'>
+              <ResizablePanel defaultSize={75} minSize={10}>
+                <div className='flex h-full items-center justify-center p-6'>
+                  <span className='font-semibold'>Code Editor</span>
+                </div>
+              </ResizablePanel>
+              <ResizableHandle />
+              <ResizablePanel defaultSize={25} minSize={10}>
+                <div className='flex h-full items-center justify-center p-6'>
+                  <span className='font-semibold'>Terminal</span>
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </ResizablePanel>
+          <ResizableHandle />
+          <ResizablePanel defaultSize={30} minSize={20} maxSize={50}>
+            <div className='flex h-[200px] items-center justify-center p-6'>
+              <span className='font-semibold'>Browser</span>
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  );
+}
