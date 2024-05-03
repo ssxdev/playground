@@ -5,6 +5,7 @@ import {
 } from '@/components/ui/resizable';
 import Navbar from './navbar';
 import IDE from './ide';
+import TerminalIDE from './terminal';
 
 export function Playground() {
   return (
@@ -27,9 +28,7 @@ export function Playground() {
               </ResizablePanel>
               <ResizableHandle />
               <ResizablePanel defaultSize={25} minSize={10}>
-                <div className='flex h-full items-center justify-center p-6'>
-                  <span className='font-semibold'>Terminal</span>
-                </div>
+                <TerminalIDE />
               </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
