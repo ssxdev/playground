@@ -4,6 +4,7 @@ import {
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
 import Navbar from './navbar';
+import IDE from './ide';
 
 export function Playground() {
   return (
@@ -22,9 +23,7 @@ export function Playground() {
           <ResizablePanel defaultSize={50}>
             <ResizablePanelGroup direction='vertical'>
               <ResizablePanel defaultSize={75} minSize={10}>
-                <div className='flex h-full items-center justify-center p-6'>
-                  <span className='font-semibold'>Code Editor</span>
-                </div>
+                <IDE />
               </ResizablePanel>
               <ResizableHandle />
               <ResizablePanel defaultSize={25} minSize={10}>
