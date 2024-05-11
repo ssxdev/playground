@@ -2,19 +2,30 @@
 
 import { Terminal } from '@xterm/xterm';
 import { useEffect, useRef } from 'react';
+import { AttachAddon } from '@xterm/addon-attach';
 import '@xterm/xterm/css/xterm.css';
 
 export default function TerminalIDE() {
   const terminalRef = useRef(null);
 
   useEffect(() => {
-    const terminal = new Terminal();
-    terminal.open(terminalRef.current!);
-    // Customize further as needed
-    terminal.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ');
-    // return () => {
-    //   terminal.dispose();
-    // };
+    const term = new Terminal();
+    term.open(terminalRef.current!);
+    term.write('Hello from xterm.js \r\n');
+    const socket = new WebSocket(
+      'ws://localhost:2375/containers/1d69236a1b73/attach/ws?stdin=1&stdout=1&stderr=1&logs=1'
+    );
+    const attachAddon = new AttachAddon(socket);
+
+    term.loadAddon(attachAddon);
+
+    term.onData((data) => {
+      socket.send(data);
+    });
+
+    return () => {
+      term.dispose();
+    };
   }, []);
 
   return <div ref={terminalRef} />;
