@@ -5,7 +5,9 @@ import {
 } from '@/components/ui/resizable';
 import Navbar from './navbar';
 import IDE from './ide';
-import TerminalIDE from './terminal';
+import dynamic from 'next/dynamic';
+
+const TerminalIDE = dynamic(() => import('./terminal'), { ssr: false });
 
 export function Playground() {
   return (
