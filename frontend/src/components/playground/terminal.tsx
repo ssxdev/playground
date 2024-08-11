@@ -7,8 +7,12 @@ import '@xterm/xterm/css/xterm.css';
 
 export default function TerminalIDE() {
   const terminalRef = useRef(null);
+  const isRendered = useRef(false);
 
   useEffect(() => {
+    if (isRendered.current) return;
+    isRendered.current = true;
+
     const term = new Terminal();
     term.open(terminalRef.current!);
     term.write('Hello from xterm.js \r\n');
